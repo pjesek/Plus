@@ -45,7 +45,6 @@ public class Canvas implements InventoryHolder { // Inventory holder to keep tra
     private final @NotNull Button hackyButton = Button.create(-1);
 
     // pages of the canvas
-    @Getter(AccessLevel.PRIVATE)
     private final @NotNull Map<UUID, Integer> pages = new HashMap<>();
     private @NotNull Integer rows; // 1-6 (using non-primitive to allow @NotNull for the constructor)
 
@@ -457,7 +456,7 @@ public class Canvas implements InventoryHolder { // Inventory holder to keep tra
                     menu.debug("Page: " + _page);
                     MenuManager manager = menu.manager();
                     if (manager != null) { // should never be null
-                        manager.internallyOpen(target, menu);
+                        manager.internallyOpen(target, menu, false, canvas.menuUpdateContext);
                     }
                 }).handleException(Throwable::printStackTrace);
             }
@@ -472,7 +471,7 @@ public class Canvas implements InventoryHolder { // Inventory holder to keep tra
                     menu.debug("Page: " + _page);
                     MenuManager manager = menu.manager();
                     if (manager != null) { // should never be null
-                        manager.internallyOpen(target, menu);
+                        manager.internallyOpen(target, menu, false, canvas.menuUpdateContext);
                     }
                 }).handleException(Throwable::printStackTrace);
             }
